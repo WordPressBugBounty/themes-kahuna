@@ -18,6 +18,7 @@ function kahuna_lpslider() {
 if ( $options['kahuna_lpslider'] )
 	switch ( $options['kahuna_lpslider'] ):
 		case 1:
+			cryout_preslider_hook();
 			if ( is_string( $options['kahuna_lpsliderimage'] ) ) {
 				$image = $options['kahuna_lpsliderimage'];
 			}
@@ -35,6 +36,7 @@ if ( $options['kahuna_lpslider'] )
 			) );
 		break;
 		case 2:
+			cryout_preslider_hook();
 			?> <div class="lp-dynamic-slider"> <?php
 			echo do_shortcode( $options['kahuna_lpslidershortcode'] );
 			?> </div> <!-- lp-dynamic-slider --> <?php
@@ -43,6 +45,7 @@ if ( $options['kahuna_lpslider'] )
 			// header image
 		break;
 		case 4:
+			cryout_preslider_hook();
 			?> <div class="lp-dynamic-slider"> <?php
 				if ( ! empty( $options['kahuna_lpsliderserious'] ) ) {
 					echo do_shortcode( '[serious-slider id="' . $options['kahuna_lpsliderserious'] . '"]' );
@@ -258,7 +261,7 @@ function kahuna_lpbox_output( $data ) {
 	$randomness = array ( 6, 8, 1, 5, 2, 7, 3, 4 );
 	extract($data); ?>
 			<div class="lp-box box<?php echo absint( $colno ); ?> ">
-					<div class="lp-box-image lpbox-rnd<?php echo absint( $randomness[$colno%8] ); ?>">
+					<div class="lp-box-image lpbox-rnd<?php echo absint( $randomness[$colno%8] ); ?> <?php if( empty( $image ) ) { echo "no-image"; } ?>">
                         <a class="lp-box-imagelink" tabindex="-1" <?php if( ! empty( $link ) ) { ?> href="<?php echo esc_url( $link ); ?>" <?php echo esc_attr( $target ); } ?>><span class="screen-reader-text"> <?php echo esc_attr( $title ); ?></span>  </a>
 						<?php if( ! empty( $image ) ) { echo wp_kses_post( $image ); } ?>
                         <span class="box-overlay"></span>

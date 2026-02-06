@@ -13,10 +13,22 @@ require_once( get_template_directory() . "/includes/tgmpa.php" );
 // Custom CSS Styles for customizer
 require_once( get_template_directory() . "/includes/custom-styles.php" );
 
-// load up theme options
-$cryout_theme_settings = apply_filters( 'kahuna_theme_structure_array', $kahuna_big );
-$cryout_theme_options = kahuna_get_theme_options();
-$cryout_theme_defaults = kahuna_get_option_defaults();
+function kahuna_admin_init() {
+	global $kahuna_big;
+	require_once( get_template_directory() . "/admin/defaults.php" );
+	require_once( get_template_directory() . "/admin/options.php" );
+
+	// load up theme internals
+	global $cryout_theme_settings;
+	global $cryout_theme_options;
+	global $cryout_theme_defaults;
+	$cryout_theme_settings = apply_filters( 'kahuna_theme_structure_array', $kahuna_big );
+	$cryout_theme_options = kahuna_get_theme_options();
+	$cryout_theme_defaults = kahuna_get_option_defaults();
+} // kahuna_admin_init()
+
+add_action( 'after_setup_theme', 'kahuna_admin_init', 2 );
+
 
 // Get the theme options and make sure defaults are used if no values are set
 //if ( ! function_exists( 'kahuna_get_theme_options' ) ):

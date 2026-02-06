@@ -20,10 +20,12 @@ function kahuna_content_width() {
 
 	$content_width = 0.98 * (int)$options['kahuna_sitewidth'];
 
-	switch( $options['kahuna_sitelayout'] ) {
-		case '2cSl': case '3cSl': case '3cSr': case '3cSs': $content_width -= (int)$options['kahuna_primarysidebar']; // primary sidebar
-		case '2cSr': case '3cSl': case '3cSr': case '3cSs': $content_width -= (int)$options['kahuna_secondarysidebar']; break; // secondary sidebar
-	}
+	if ( in_array( $options['kahuna_sitelayout'], array( '2cSl', '3cSl', '3cSr', '3cSs' ) ) ) {	// primary sidebar
+		$content_width -= (int)$options['kahuna_primarysidebar'];
+	};
+	if ( in_array( $options['kahuna_sitelayout'], array( '2cSr', '3cSl', '3cSr', '3cSs' ) ) ) {	// secondary sidebar
+		$content_width -= (int)$options['kahuna_secondarysidebar'];
+	};
 
 	if ( is_front_page() && $options['kahuna_landingpage'] ) {
 		// landing page could be a special case;
@@ -55,7 +57,7 @@ function kahuna_featured_width() {
 		'kahuna_sitelayout', 'kahuna_landingpage', 'kahuna_magazinelayout', 'kahuna_sitewidth', 'kahuna_primarysidebar', 'kahuna_secondarysidebar',
 		'kahuna_lplayout',
 	) );
-	
+
 	// layout needs to be filtered thorougly
 	$options['theme_sitelayout'] = cryout_get_layout( 'theme_sitelayout' );
 
@@ -104,10 +106,10 @@ function kahuna_header_image_url() {
 	$kahuna_headerw = floor( cryout_get_option( 'kahuna_sitewidth' ) * $limit );
 
 	// Check if this is a post or page, if it has a thumbnail, and if it's a big one
-	$post_id = false; 
+	$post_id = false;
 	global $post;
 	if ( !empty( $post->ID ) ) $post_id = $post->ID;
-	
+
 	// Check if static frontpage (but not landing page)
 	if ( is_front_page() && ! is_home() && ! cryout_is_landingpage() ) {
 		$front_id = get_option( 'page_on_front' );
@@ -118,7 +120,7 @@ function kahuna_header_image_url() {
 		$blog_id = get_option( 'page_for_posts' );
 		if ( !empty( $blog_id ) ) $post_id = $blog_id;
 	}
-	
+
 	// WooCommerce gets separate handling for its non-page sections
 	$woo = false;
 	$woo_featured_in_header = apply_filters( 'kahuna_featured_header_in_wc', true );
@@ -130,10 +132,10 @@ function kahuna_header_image_url() {
 		}
 	}
 
-	// default to general header image 
+	// default to general header image
 	$header_image = FALSE;
 	if ( get_header_image() != '' ) { $header_image = get_header_image(); }
-	
+
 	if ( ( is_singular() || $woo || cryout_on_blog() ) && has_post_thumbnail( $post_id ) && $kahuna_fheader &&
 		( $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'kahuna-header' ) )
 		 ) :
@@ -242,10 +244,10 @@ endif;
 if ( ! function_exists( 'kahuna_title_and_description' ) ) :
 function kahuna_title_and_description() {
 
-	$options = cryout_get_option( array( 'kahuna_logoupload', 'kahuna_siteheader' ) );
+	$options = cryout_get_option( array( 'kahuna_siteheader' ) );
 
 	if ( in_array( $options['kahuna_siteheader'], array( 'logo', 'both' ) ) ) {
-		kahuna_logo_helper( $options['kahuna_logoupload'] );
+		kahuna_logo_helper();
 	}
 	if ( in_array( $options['kahuna_siteheader'], array( 'title', 'both', 'logo', 'empty' ) ) ) {
 		$heading_tag = ( is_front_page() || ( is_home() && ! kahuna_header_title_check() ) ) ? 'h1' : 'div';
@@ -260,18 +262,13 @@ function kahuna_title_and_description() {
 endif;
 add_action ( 'cryout_branding_hook', 'kahuna_title_and_description' );
 
-function kahuna_logo_helper( $kahuna_logo ) {
-	if ( function_exists( 'the_custom_logo' ) ) {
-		// WP 4.5+
+function kahuna_logo_helper() {
 		$wp_logo = str_replace( 'class="custom-logo-link"', 'id="logo" class="custom-logo-link" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '"', get_custom_logo() );
-		if ( ! empty( $wp_logo ) ) echo '<div class="identity">' . $wp_logo . '</div>';
-	} else {
-		// older WP
-		if ( ! empty( $kahuna_logo ) ) {
-			$img = wp_get_attachment_image_src( $kahuna_logo, 'full' );
-			echo '<div class="identity"><a id="logo" href="' . esc_url( home_url( '/' ) ) . '" ><img title="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'" alt="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'" src="' . esc_url( $img[0] ) . '" /></a></div>';
+		if ( ! empty( $wp_logo ) ) {
+			echo '<div class="identity">' . $wp_logo . '</div>';
+		} else {
+			echo '';
 		}
-	}
 } // kahuna_logo_helper()
 
 // cryout_schema_publisher() located in cryout/prototypes.php
@@ -284,6 +281,7 @@ add_action( 'cryout_singular_after_inner_hook', 'cryout_schema_main' );
 
 // cryout_skiplink() located in cryout/prototypes.php
 add_action( 'wp_body_open', 'cryout_skiplink', 2 );
+
 /**
  * Back to top button
 */
@@ -341,7 +339,6 @@ function kahuna_fixed_nav_links( $wrap = TRUE ) { ?>
 <?php
 } // kahuna_fixed_nav_links()
 endif;
-if ( 2 == cryout_get_option( 'kahuna_singlenav' ) ) add_action('cryout_main_hook', 'kahuna_fixed_nav_links', 15 );
 
 /**
  * Footer Hook
@@ -352,7 +349,7 @@ function kahuna_master_footer() {
 	do_action( 'cryout_footer_hook' );
 	echo '<div style="display:block;float:right;clear: right;">' . __( "Powered by", "kahuna" ) .
 		'<a target="_blank" href="' . esc_html( $the_theme->get( 'ThemeURI' ) ) . '" title="';
-	echo 'Kahuna WordPress Theme by ' . 'Cryout Creations"> ' . 'Kahuna' .'</a> &amp; <a target="_blank" href="' . "http://wordpress.org/";
+	echo 'Kahuna WordPress Theme by ' . 'Cryout Creations"> ' . 'Kahuna' .'</a> &amp; <a target="_blank" href="' . "//wordpress.org/";
 	echo '" title="' . esc_attr__( "Semantic Personal Publishing Platform", "kahuna") . '"> ' . sprintf( " %s", "WordPress" ) . '</a>.</div>';
 }
 
@@ -438,15 +435,15 @@ function kahuna_breadcrumbs() {
 		'</span>', 												// $after
 		'<div id="breadcrumbs-container" class="cryout %1$s"><div id="breadcrumbs-container-inside"><div id="breadcrumbs"> <nav id="breadcrumbs-nav" %2$s>', // $wrapper_pre
 		'</nav></div></div></div><!-- breadcrumbs -->', 		// $wrapper_post
-		kahuna_get_layout_class(false),								// $layout_class
-		__( 'Home', 'kahuna' ),									// $text_home
-		__( 'Archive for category "%s"', 'kahuna' ),					// $text_archive
-		__( 'Search results for "%s"', 'kahuna' ), 					// $text_search
-		__( 'Posts tagged', 'kahuna' ), 						// $text_tag
-		__( 'Articles posted by', 'kahuna' ), 					// $text_author
-		__( 'Not Found', 'kahuna' ),							// $text_404
-		__( 'Post format', 'kahuna' ),							// $text_format
-		__( 'Page', 'kahuna' )									// $text_page
+		kahuna_get_layout_class(false),					// $layout_class
+		__( 'Home', 'kahuna' ),						// $text_home
+		__( 'Archive for category "%s"', 'kahuna' ),			// $text_archive
+		__( 'Search results for "%s"', 'kahuna' ), 			// $text_search
+		__( 'Posts tagged', 'kahuna' ), 				// $text_tag
+		__( 'Articles posted by', 'kahuna' ), 				// $text_author
+		__( 'Not Found', 'kahuna' ),					// $text_404
+		__( 'Post format', 'kahuna' ),					// $text_format
+		__( 'Page', 'kahuna' )						// $text_page
 	);
 } // kahuna_breadcrumbs()
 endif;
@@ -459,6 +456,7 @@ endif;
 if ( ! function_exists( 'cryout_search_menu' ) ) :
 function cryout_search_menu( $items, $args ) {
 $options = cryout_get_option( array( 'kahuna_searchboxmain', 'kahuna_searchboxfooter' ) );
+
 	if( $args->theme_location == 'primary' && $options['kahuna_searchboxmain'] ) {
 		$container_class = 'menu-main-search';
 		$items .= "<li class='" . $container_class . " menu-search-animated'>
@@ -474,12 +472,6 @@ $options = cryout_get_option( array( 'kahuna_searchboxmain', 'kahuna_searchboxfo
 endif;
 
 /* cryout_schema_microdata() moved to framework in 0.9.9/0.5.6 */
-
-/**
- * Normalizes tags widget font when needed
- */
-if ( TRUE === cryout_get_option( 'kahuna_normalizetags' ) ) add_filter( 'wp_generate_tag_cloud', 'cryout_normalizetags' );
-
 
 /**
 * Master hook to bypass customizer options

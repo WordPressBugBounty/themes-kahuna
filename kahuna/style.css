@@ -4,16 +4,16 @@ Theme URI: http://www.cryoutcreations.eu/wordpress-themes/kahuna
 Description: Kahuna is the big kahuna among WordPress themes. It proved itself with an exotic design, effective and easy to use customizer settings and a responsive, fully editable layout. Many personal and business sites have embraced it for a wide spectrum of uses, ranging from portfolio and photography sites to blogs and online shops. The features are too many to list but here are some of the main attractions: translatable, search engine optimized (both microformats and micordata), supports RTL (right-to-left) languages, supports eCommerce (WooCommerce), has both wide and boxed layouts, masonry bricks, socials, Google fonts, typography options, and a great customizable landing page. Now with full Gutenberg support. * DEMO: http://demos.cryoutcreations.eu/wp/kahuna/ *
 Author: Cryout Creations
 Author URI: http://www.cryoutcreations.eu
-Version: 1.7.0.1
+Version: 1.8.0
 Requires at least: 4.5
-Tested up to: 6.6
-Requires PHP: 5.6
+Tested up to: 6.9
+Requires PHP: 7.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, three-columns, right-sidebar, left-sidebar, grid-layout, custom-background, custom-colors, custom-header, flexible-header, custom-menu, featured-image-header, featured-images, front-page-post-form, full-width-template, footer-widgets, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, entertainment, portfolio
 Text Domain: kahuna
 
-Kahuna WordPress Theme - Copyright 2017-2024, Cryout Creations - http://www.cryoutcreations.eu
+Kahuna WordPress Theme - Copyright 2017-2025, Cryout Creations - http://www.cryoutcreations.eu
 This theme, like WordPress, is licensed under the GPL.
 */
 
@@ -532,6 +532,9 @@ a.continue-reading-link {
 	outline-offset: -10px;
 }
 
+#access .dropdown-toggle:focus  {
+	outline: auto;
+}
 
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -710,6 +713,11 @@ a.continue-reading-link {
 	padding-bottom: 2.5em;
 	padding-left: 2.5em;
 	padding-right: 2.5em;
+}
+
+.page-template-template-fullwidth #container:not(.kahuna-landing-page) .main > :not(#content-masonry) {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #content-masonry {
@@ -900,6 +908,10 @@ img.custom-logo {
 	line-height: 0;
 }
 
+.wp-custom-header #wp-custom-header-video {
+	width: 100%; /* fill header with video iframe */
+}
+
 .wp-custom-header-video-button.wp-custom-header-video-button {
 	position: absolute;
 	left: 0;
@@ -1081,21 +1093,21 @@ img.custom-logo {
 	display: inline-block;
 	background: transparent;
 	border: 0;
-	margin-top: 3px;
 	padding: 0;
 	color: inherit;
-	opacity: 0.5;
 	transition: .3s ease-out all;
 }
 
 #access > div > ul li > .dropdown-toggle::after {
 	content: "\e915";
 	font-family: "iconmeta";
-	z-index: 251;
+	display: block;
+	opacity: 0.5;
 }
 
 #access > div > ul ul li > .dropdown-toggle::after {
 	content: "\e917";
+	opacity: 0.5;
 }
 
 #access > div > ul li:hover > .dropdown-toggle {
@@ -1332,6 +1344,7 @@ nav#mobile-menu ul li {
 	font-family: "iconmeta";
 	content: "\e912";
 	font-size: 1.3em;
+	opacity: 0.5;
 }
 
 nav#mobile-menu .sub-menu,
@@ -1884,10 +1897,6 @@ img#wpstats {
 	margin-bottom: 2em;
 }
 
-.comments-link a {
-	margin-left: 5px;
-}
-
 .article-inner .entry-header {
 	position: relative;
 }
@@ -2055,10 +2064,6 @@ span.edit-link .icon-edit::before {
 	top: auto;
 	bottom: 1.5em;
 	line-height: 1.5;
-}
-
-.post-thumbnail-container .comments-link a {
-	margin-left: 0;
 }
 
 .post-thumbnail-container .featured-image-meta.entry-meta a,
@@ -3453,7 +3458,7 @@ a.staticslider-button + a.staticslider-button,
 	z-index: 12;
 }
 
-.lp-box-image::before {
+.lp-box-image.no-image::before {
 	content: "\e92d";
 	position: absolute;
 	z-index: 2;
@@ -3470,7 +3475,9 @@ a.staticslider-button + a.staticslider-button,
 	color: rgba(0, 0, 0, .15);
 }
 
-.lp-box .lp-box-image > img {
+.lp-box .lp-box-image > img,
+/* for optimization plugins that replace the img: */
+.lp-box .lp-box-image picture {
 	position: relative;
 	z-index: 10;
 	display: block;
@@ -3565,6 +3572,16 @@ a.staticslider-button + a.staticslider-button,
 
 .lp-box-link {
 	display: none;
+}
+
+.lp-boxes-1 .lp-box .lp-box-image {
+	aspect-ratio: var(--kahuna-lpbox-ratio1);
+}
+.lp-boxes-2 .lp-box .lp-box-image {
+	aspect-ratio: var(--kahuna-lpbox-ratio2);
+}
+.lp-boxes-3 .lp-box .lp-box-image {
+	aspect-ratio: var(--kahuna-lpbox-ratio3);
 }
 
 /* ### Animated boxes */
@@ -5334,7 +5351,8 @@ ul.cryout-wposts li:last-child {
 }
 
 .widget_cryout_contact address > span {
-	display: block;
+	display: table;
+	width: 100%;
 	float: none;
 	clear: both;
 	margin: 2px 0;
@@ -6122,6 +6140,18 @@ a.continue-reading-link:hover i.icon-continue-reading {
 	margin-top: 50px;
 }
 
+.page-template-template-fullwidth #container.one-column.template-full-width {
+	max-width: none;
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.page-template-template-fullwidth #container.one-column.template-full-width article.hentry .article-inner {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /*--------------------------------------------------------------
 	# PORTFOLIO
 --------------------------------------------------------------*/
@@ -6378,8 +6408,8 @@ article.jetpack-portfolio header .entry-title + .taxonomy-description {
 	display: none;
 }
 
-.kahuna-hide-page-title .page h1.entry-title,
-.home.kahuna-hide-page-title .page h2.entry-title {
+.page.kahuna-hide-page-title .entry-title,
+.home.kahuna-hide-page-title.page .entry-title {
 	display: none;
 }
 
@@ -6393,18 +6423,24 @@ article.jetpack-portfolio header .entry-title + .taxonomy-description {
 	display: none;
 }
 
-.kahuna-hide-cat-title .page-header {
+.archive.kahuna-hide-cat-title .page-header {
 	display: none;
 }
 
 .kahuna-metahide-mainmenu #site-header-main,
 .kahuna-metahide-headerimg #header-image-main-inside,
 .kahuna-metahide-breadcrumbs #breadcrumbs-container,
+.kahuna-metahide-title .page-header,
 .kahuna-metahide-title #header-page-title-inside .entry-title,
 .kahuna-metahide-title .article-inner .entry-title,
 .kahuna-metahide-colophon #colophon,
 .kahuna-metahide-footer #footer {
 	display: none;
+}
+
+.kahuna-metahide-contentbg:not(.blog):not(.page-template-template-blog):not(.archive):not(.search) #container:not(.kahuna-landing-page) .main,
+.kahuna-metahide-contentbg article.hentry {
+	background-color: transparent;
 }
 
 .kahuna-metahide-mainmenu #header-image-main {

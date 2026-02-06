@@ -107,7 +107,7 @@ function kahuna_posted_author() {
 			</span>',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			sprintf( esc_attr__( 'View all posts by %s', 'kahuna' ), esc_attr(get_the_author()) ),
-			esc_attr(get_the_author())
+			esc_attr( get_the_author() )
 		);
 	}
 } // kahuna_posted_author
@@ -159,7 +159,7 @@ function kahuna_posted_date() {
 				<time class="published" datetime="<?php echo esc_attr( get_the_time( 'c' ) ) ?>" <?php cryout_schema_microdata( 'time' ) ?>>
 					<?php echo $date . ( ( $kahuna_meta_date && $kahuna_meta_time ) ? ', ' : '' ) . $time ?>
 				</time>
-				<time class="updated" datetime="<?php echo esc_attr( get_the_modified_time( 'c' ) ) ?>" <?php cryout_schema_microdata( 'time-modified' ) ?>><?php echo esc_html( get_the_modified_date() ) ?></time>
+				<time class="updated" datetime="<?php echo esc_attr( get_the_modified_time( 'c' ) ) ?>" <?php cryout_schema_microdata( 'time-modified' ) ?>><?php echo esc_html( get_the_modified_date() );?></time>
 		</span>
 		<?php
 	}
@@ -238,6 +238,7 @@ function kahuna_meta_infos() {
 
 	}
 
+	add_action( 'cryout_singular_utility_hook',	'kahuna_posted_edit', 40 ); // Edit button
 	add_action( 'cryout_featured_meta_hook', 'kahuna_meta_format', 10 ); // Post format
 } //kahuna_meta_infos()
 add_action( 'wp_head', 'kahuna_meta_infos' );
@@ -272,6 +273,8 @@ endif;
  */
 if ( ! function_exists( 'kahuna_set_featured_srcset_picture' ) ) :
 function kahuna_set_featured_srcset_picture() {
+
+	if ( cryout_get_option( 'kahuna_fpost' ) == FALSE ) return;
 
 	global $post;
 	$options = cryout_get_option( array( 'kahuna_fpost', 'kahuna_fauto', 'kahuna_falign', 'kahuna_magazinelayout', 'kahuna_landingpage' ) );
@@ -329,6 +332,6 @@ function kahuna_set_featured_srcset_picture() {
 		<?php }
 } // kahuna_set_featured_srcset_picture()
 endif;
-if ( cryout_get_option( 'kahuna_fpost' ) ) add_action( 'cryout_featured_hook', 'kahuna_set_featured_srcset_picture' );
+add_action( 'cryout_featured_hook', 'kahuna_set_featured_srcset_picture' );
 
 /* FIN */

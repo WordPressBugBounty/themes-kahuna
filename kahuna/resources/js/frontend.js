@@ -5,8 +5,7 @@
  */
 
 jQuery( document ).ready( function() {
-
-	cryoutLpBoxesRatios();
+	/*cryoutLpBoxesRatios();*/
 	cryoutMobileMenuInit();
 	cryoutFixedMobileMenu();
 	cryoutInitNav( '#mobile-menu' );
@@ -17,7 +16,7 @@ jQuery( document ).ready( function() {
 	cryoutBodyClasses();
 	cryoutTabsWidget();
 	cryoutPortfolioFilter();
-	cryoutRemoveFocus('#access a, #site-title a');
+	cryoutRemoveFocus();
 
 	if ( typeof cryout_theme_settings !== 'undefined' ) {
 
@@ -30,6 +29,7 @@ jQuery( document ).ready( function() {
 		if ( cryout_theme_settings.autoscroll == 1 ) {
 			cryoutAutoScroll();
 		}
+
 		/* Animate articles */
 		animateScroll( '#content-masonry > article', 'animated-article' );
 
@@ -48,8 +48,8 @@ jQuery( document ).ready( function() {
 		} else {
 			jQuery( '.kahuna-fixed-menu #site-header-main' ).removeClass( 'header-fixed' );
 		}
-	} );
 
+	} );
 } ); /* document.ready */
 
 jQuery( window ).on( 'load', function() {
@@ -57,7 +57,6 @@ jQuery( window ).on( 'load', function() {
 	jQuery( window ).trigger( 'scroll' );
 	cryoutMasonry();
 	cryoutPortfolioMasonry();
-
 } ); /* window.load */
 
 
@@ -66,11 +65,11 @@ jQuery( window ).on( 'load', function() {
 **/
 
 /* Force LP boxes images ratios */
-function cryoutLpBoxesRatios() {
+/* function cryoutLpBoxesRatios() {
 	for ( var index = 1; index <= cryout_theme_settings.lpboxratios.length; ++index ) {
 		jQuery( '.lp-boxes-' + index + ' .lp-box-image' ).keepRatio( cryout_theme_settings.lpboxratios[index-1] );
 	}
-} /* cryoutLpBoxesRatios() */
+} */ /* cryoutLpBoxesRatios() */
 
 /* Menu animation */
 function cryoutMenuAnimate() {
@@ -287,7 +286,7 @@ function cryoutInitNav( selector ) {
 } /* cryoutInitNav() */
 
 /* LP Boxes Keep aspect ratio*/
-jQuery.fn.keepRatio = function( ratio ) {
+/* jQuery.fn.keepRatio = function( ratio ) {
 
 	var $this = jQuery( this );
 	var nh = $this.width() / ratio;
@@ -298,7 +297,7 @@ jQuery.fn.keepRatio = function( ratio ) {
 		$this.css( 'height', nh + 'px' );
 	} );
 
-}; /* keepRatio() */
+}; */ /* keepRatio() */
 
 /* LP Box Mouse direction overlay animation */
 jQuery.fn.mousedir = function( el ) {
@@ -405,13 +404,12 @@ function cryoutBodyClasses() {
 } /* cryoutBodyClasses() */
 
 /* Remove all off-canvas states */
-function cryoutRemoveFocus( selector ) {
-	jQuery( selector ).on('mouseup mousedown', function() {
-		jQuery( this ).trigger('blur');
+function cryoutRemoveFocus() {
+	jQuery( 'input, textarea, select, a' ).on( 'focus', function() {
+		if (jQuery( this ).data( 'mousedown' ) || jQuery( this ).data( 'mouseup' ) ) {
+			jQuery( this ).css( 'outline', 'none' );
+		}
 	} );
-	jQuery( 'input, textarea, select' ).on('mouseup mousedown', function() {
-		jQuery( this ).css('outline', 'none');
-	} )
 } /* cryoutRemoveFocus() */
 
 /*  Tabs widget */

@@ -43,7 +43,7 @@ function kahuna_setup() {
 	load_theme_textdomain( 'kahuna', get_template_directory() . '/cryout/languages' );
 	load_theme_textdomain( 'kahuna', get_template_directory() . '/languages' );
 	load_textdomain( 'cryout', '' );
-
+	
 	// This theme allows users to set a custom backgrounds
 	add_theme_support( 'custom-background' );
 
@@ -89,6 +89,7 @@ function kahuna_setup() {
 		apply_filters( 'kahuna_featured_image_lp_height', $options['kahuna_fheight'] ),
 		$falign
 	);
+
 	add_image_size( 'kahuna-featured-half',
 		apply_filters( 'kahuna_featured_image_half_width', 800 ),
 		apply_filters( 'kahuna_featured_image_falf_height', $options['kahuna_fheight'] ),
@@ -141,6 +142,7 @@ function kahuna_setup() {
 	// Gutenberg
 	// add_theme_support( 'wp-block-styles' ); // apply default block styles
 	add_theme_support( 'responsive-embeds' );
+	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-color-palette', array(
 		array(
 			'name' => __( 'Accent #1', 'kahuna' ),
@@ -200,6 +202,11 @@ function kahuna_setup() {
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
+
+	/**
+	* Normalizes tags widget font when needed
+	*/
+	if ( TRUE === cryout_get_option( 'theme_normalizetags' ) ) add_filter( 'wp_generate_tag_cloud', 'cryout_normalizetags' );
 
 } // kahuna_setup()
 
@@ -263,7 +270,6 @@ function kahuna_main_menu() { ?>
 		'link_after'	=> '</span>',
 		'items_wrap'	=> '<div><ul id="%s" class="%s">%s</ul></div>',
 		'fallback_cb' 	=> 'kahuna_default_menu'
-
 	) );
 } // kahuna_main_menu()
 add_action ( 'cryout_access_hook', 'kahuna_main_menu' );

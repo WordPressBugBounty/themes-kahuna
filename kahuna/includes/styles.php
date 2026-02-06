@@ -9,9 +9,7 @@
  * Loading main styles and scripts
  */
 function kahuna_enqueue_styles() {
-	// HTML5 Shiv
-	wp_enqueue_script( 'kahuna-html5shiv', get_template_directory_uri() . '/resources/js/html5shiv.min.js', null, _CRYOUT_THEME_VERSION );
-	if ( function_exists( 'wp_script_add_data' ) ) wp_script_add_data( 'kahuna-html5shiv', 'conditional', 'lt IE 9' );
+	// html5 shiv removed in 1.8.0 due to deprecation of IE conditional comments in WP 6.9
 
 	$cryout_theme_structure = cryout_get_theme_structure();
 	$options = cryout_get_option();
@@ -25,7 +23,7 @@ function kahuna_enqueue_styles() {
 		$itemg = $item . 'google';
 		$itemw = $item . 'weight';
 		// custom font names
-		if ( ! empty( $options[$itemg] ) && ! preg_match( '/custom\sfont/i', $options[$item] ) ) {
+		if ( ! empty( $options[$itemg] ) && ! preg_match( '/local\sfont/i', $options[$item] ) ) { // warning: identifier comes from defaults.php, keep in sync !
 				if ( $item == _CRYOUT_THEME_PREFIX . '_fgeneral' ) {
 					$gfonts[] = cryout_gfontclean( $options[$itemg], ":100,200,300,400,500,600,700,800,900" ); // include all weights for general font
 				} else {
@@ -57,6 +55,7 @@ function kahuna_enqueue_styles() {
 	if ( !empty($gfonts) ){ 
 		wp_enqueue_style( 'kahuna-googlefonts', '//fonts.googleapis.com/css?family=' . implode( "|" , array_unique( array_merge( $roots, $gfonts ) ) ), null, _CRYOUT_THEME_VERSION );
 	};
+
 	// Main theme style
 	wp_enqueue_style( 'kahuna-main', get_stylesheet_uri(), null, _CRYOUT_THEME_VERSION );
 	// RTL style
@@ -136,7 +135,7 @@ if ( ! is_admin() ) add_filter( 'script_loader_tag', 'kahuna_scripts_filter', 10
  */
 function kahuna_responsive_meta() {
 	echo '<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">' . PHP_EOL;
-	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
+	// IE-related quirks removed in 1.8.0
 } //kahuna_responsive_meta()
 add_action( 'cryout_meta_hook', 'kahuna_responsive_meta' );
 
@@ -151,6 +150,6 @@ function kahuna_add_editor_styles() {
 	add_editor_style( add_query_arg( 'action', 'kahuna_editor_styles_output', admin_url( 'admin-ajax.php' ) ) );
 	add_action( 'wp_ajax_kahuna_editor_styles_output', 'kahuna_editor_styles_output' );
 }//kahuna_add_editor_styles
-kahuna_add_editor_styles();
+add_action( 'init', 'kahuna_add_editor_styles' );
 
 /* FIN */

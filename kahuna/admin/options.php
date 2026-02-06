@@ -106,13 +106,15 @@ function kahuna_conditionals( $control ) {
 	// handle landing page slider banner hint
 	if ( ( $control->id == sprintf( '%1$s_settings[%2$s_headerorbannerhint]', cryout_sanitize_tn(_CRYOUT_THEME_NAME), _CRYOUT_THEME_PREFIX ) ) && 
 			( $control->manager->get_setting( sprintf( '%1$s_settings[%2$s_landingpage]', cryout_sanitize_tn(_CRYOUT_THEME_NAME), _CRYOUT_THEME_PREFIX ) )->value() == 1 ) && 
-			( $control->manager->get_setting( sprintf( '%1$s_settings[%2$s_lpslider]', cryout_sanitize_tn(_CRYOUT_THEME_NAME), _CRYOUT_THEME_PREFIX ) )->value() == 1 ) 
+			( $control->manager->get_setting( sprintf( '%1$s_settings[%2$s_lpslider]', cryout_sanitize_tn(_CRYOUT_THEME_NAME), _CRYOUT_THEME_PREFIX ) )->value() == 1 )
 	) return true;
 
     return false;
 
 } // kahuna_conditionals()
 
+function kahuna_big_init() {
+global $kahuna_big;
 $kahuna_big = array(
 
 /************* general info ***************/
@@ -166,7 +168,7 @@ $kahuna_big = array(
 ), // info_settings
 
 'panel_overrides' => array(
-	'background' => array(
+	/* 'background' => array(
         'title' => __( 'Background', 'cryout' ),
 		'desc' => __( 'Background Settings.', 'cryout' ),
 		'priority' => 50,
@@ -189,7 +191,7 @@ $kahuna_big = array(
 		'section' => 'cryoutoverride-kahuna_siteidentity',
 		'replaces' => 'title_tagline',
 		'type' => 'section',
-	),
+	), */
 	'colors' => array(
 		'section' => 'section',
 		'replaces' => 'colors',
@@ -198,18 +200,24 @@ $kahuna_big = array(
 
 ), // panel_overrides
 
+'priorities_overrides' => array(
+	'title_tagline' => '20', // default: 20
+	'header_image' => '22', // default: 60
+	'background_image' => '24', // default: 80
+), // priorities_overrides
+
 /************* panels *************/
 
 'panels' => array(
 
-	array('id'=>'kahuna_siteidentity', 'title'=>__('Site Identity','kahuna'), 'callback'=>'', 'identifier'=>'cryoutoverride-' ),
-	array('id'=>'kahuna_layout_section', 'title'=>__('Layout','kahuna'), 'callback'=>'' ),
-	array('id'=>'kahuna_header_section', 'title'=>__('Header','kahuna'), 'callback'=>'' ),
-	array('id'=>'kahuna_landingpage', 'title'=>__('Landing Page','kahuna'), 'callback'=>'' ),
-	array('id'=>'kahuna_general_section', 'title'=>__('General','kahuna') , 'callback'=>'' ),
-	array('id'=>'kahuna_colors_section', 'title'=>__('Colors','kahuna'), 'callback'=>'' ),
-	array('id'=>'kahuna_text_section', 'title'=>__('Typography','kahuna'), 'callback'=>'' ),
-	array('id'=>'kahuna_post_section', 'title'=>__('Post Information','kahuna') , 'callback'=>'' ),
+	//array('id'=>'kahuna_siteidentity', 'title'=>__('Site Identity','kahuna'), 'callback'=>'', 'identifier'=>'cryoutoverride-' ),
+	array('id'=>'kahuna_layout_section', 'title'=>__('Layout','kahuna'), 'callback'=>'', 'priority' => 30 ),
+	array('id'=>'kahuna_header_section', 'title'=>__('Header','kahuna'), 'callback'=>'', 'priority' => 35 ),
+	array('id'=>'kahuna_landingpage', 'title'=>__('Landing Page','kahuna'), 'callback'=>'', 'priority' => 40 ),
+	array('id'=>'kahuna_general_section', 'title'=>__('General','kahuna') , 'callback'=>'', 'priority' => 45 ),
+	array('id'=>'kahuna_colors_section', 'title'=>__('Colors','kahuna'), 'callback'=>'', 'priority' => 50 ),
+	array('id'=>'kahuna_text_section', 'title'=>__('Typography','kahuna'), 'callback'=>'', 'priority' => 55 ),
+	array('id'=>'kahuna_post_section', 'title'=>__('Post Information','kahuna') , 'callback'=>'', 'priority' => 60 ),
 
 ), // panels
 
@@ -225,13 +233,13 @@ $kahuna_big = array(
 	array('id'=>'kahuna_headermenu', 'title'=>__('Menu','kahuna'), 'callback'=>'', 'sid'=> 'kahuna_header_section', 'priority'=>10 ),
 	array('id'=>'kahuna_headercontent', 'title'=>__('Content','kahuna'), 'callback'=>'', 'sid'=> 'kahuna_header_section', 'priority'=>12 ),
 	// landing page
-	array('id'=>'kahuna_lpgeneral', 'title'=>__('Settings','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 10),
+	array('id'=>'kahuna_lpgeneral', 'title'=>__('General','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 10),
 	array('id'=>'kahuna_lpslider', 'title'=>__('Slider','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 20),
 	array('id'=>'kahuna_lpblocks1', 'title'=>__('Featured Icon Blocks','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 30 ),
 	array('id'=>'kahuna_lpboxes1', 'title'=>__('Featured Boxes','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 40),
 	array('id'=>'kahuna_lpboxes2', 'title'=>__('Featured Boxes 2','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 50),
 	array('id'=>'kahuna_lptexts', 'title'=>__('Text Areas','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 60),
-	array('id'=>'kahuna_lpfcontent', 'title'=>__('Featured Content','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 70),
+	//array('id'=>'kahuna_lpfcontent', 'title'=>__('Featured Content','kahuna'), 'callback'=>'', 'sid'=>'kahuna_landingpage', 'priority' => 70),
 	// text
 	array('id'=>'kahuna_fontfamily', 'title'=>__('General Font','kahuna'), 'callback'=>'', 'sid'=> 'kahuna_text_section'),
 	array('id'=>'kahuna_fontheader', 'title'=>__('Header Fonts','kahuna'), 'callback'=>'', 'sid'=> 'kahuna_text_section'),
@@ -360,7 +368,7 @@ $kahuna_big = array(
 	'id' => 'kahuna_elementpadding',
 		'type' => 'numberslider',
 		'label' => __('Post/page padding','kahuna'),
-		'min' => 1,
+		'min' => 0,
 		'max' => 10,
 		'step' => 1,
 		'um' => '%',
@@ -401,6 +409,16 @@ $kahuna_big = array(
 		'addon' => TRUE, // this option gets added to built-in WordPress section
 	'section' => 'title_tagline' ),
 	array(
+	'id' => 'theme_headervideohint',
+		'type' => 'notice',
+		'label' => '',
+		'desc' => __( 'Due to bandwidth considerations, header videos are only loaded on the front page for viewports that are at least 900 pixels wide and 500 pixels tall.<br>Additionally, most mobile browsers block autoplay of videos with sound.', 'kahuna' ),
+		'input_attrs' => array( 'class' => '' ),
+		'priority' => 8,
+		'active_callback' => 'is_header_video_active',
+		'addon' => TRUE, // this option gets added to built-in WordPress section
+	'section' => 'header_image' ),
+	array(
 	'id' => 'kahuna_headerorbannerhint',
 		'type' => 'notice',
 		'label' => '',
@@ -416,7 +434,7 @@ $kahuna_big = array(
 	'id' => 'kahuna_menustyle',
 		'type' => 'toggle',
 		'values' => array( 0, 1 ),
-		'label' => __('Fixed Menu','kahuna'),
+		'label' => __('Sticky Menu','kahuna'),
 		'desc' => "",
 	'section' => 'kahuna_headermenu' ),
 	array(
@@ -459,13 +477,6 @@ $kahuna_big = array(
 		'label' => __('Show Tagline','kahuna'),
 		'desc' => '',
 	'section' => 'kahuna_headercontent' ),
-	array(
-	'id' => 'kahuna_logoupload',
-		'type' => 'media-image',
-		'label' => __('Logo Image','kahuna'),
-		'desc' => '',
-		'disable_if' => 'the_custom_logo',
-	'section' => 'kahuna_siteheader' ),
 	array(
 	'id' => 'kahuna_identityhints',
 		'type' => 'notice',
@@ -539,15 +550,15 @@ $kahuna_big = array(
 		'labels' => array( __("Static Page", "kahuna"), __("Posts", "kahuna"), __("Disabled", "kahuna") ),
 		'desc' => '',
 		'active_callback' => 'kahuna_conditionals',
-	'section' => 'kahuna_lpfcontent' ),
+	'section' => 'kahuna_lpgeneral' ),
 	array(
 	'id' => 'kahuna_landingpage_fronthint',
 		'type' => 'notice',
 		'label' => '',
-		'input_attrs' => array( 'class' => 'notice' ),
+		'input_attrs' => array( 'class' => '' ),
 		'desc' => sprintf( __( "Select the front (static) page in WordPress' %s","kahuna" ), "<a data-type='section' data-id='static_front_page' class='cryout-customizer-focus'><strong>" . __("Homepage Settings", "kahuna") . " &raquo;</strong></a>" ),
 		'active_callback' => 'kahuna_conditionals',
-	'section' => 'kahuna_lpfcontent' ),
+	'section' => 'kahuna_lpgeneral' ),
 	array(
 	'id' => 'kahuna_lpposts_more',
 		'type' => 'text',
@@ -555,6 +566,16 @@ $kahuna_big = array(
 		'desc' => '',
 		'active_callback' => 'kahuna_conditionals',
 	'section' => 'kahuna_lpfcontent' ),
+	// lp-related hint to WP's homepage panel
+	array(
+	'id' => 'kahuna_landingpage_wphint',
+		'type' => 'notice',
+		'label' => '',
+		'desc' => sprintf( __( 'Configure the theme\'s landing page functionality in the %s','kahuna' ), '<a data-type="panel" data-id="cryout-theme_landingpage" class="cryout-customizer-focus"><strong>' . __('Landing Page options', 'kahuna') . ' &raquo;</strong></a>' ),
+		'input_attrs' => array( 'class' => '' ),
+		'priority' => 55,
+		'addon' => TRUE, // this option gets added to built-in WordPress section
+	'section' => 'static_front_page' ),
 
 	// slider
 	array(
@@ -1050,6 +1071,13 @@ $kahuna_big = array(
 		'label' => __('Footer Text','kahuna'),
 		'desc' => '',
 	'section' => 'kahuna_colors_footer' ),
+
+	array(
+	'id' => 'kahuna_lpbannerbg',
+		'type' => 'color',
+		'label' => __('Banner','kahuna'),
+		'desc' => '',
+	'section' => 'kahuna_colors_lp' ),
 	array(
 	'id' => 'kahuna_lpblocksbg',
 		'type' => 'color',
@@ -1388,8 +1416,8 @@ $kahuna_big = array(
 	'id' => 'kahuna_tables',
 		'type' => 'select',
 		'label' => __('Tables Style','kahuna'),
-		'values' => array( 'kahuna-no-table', 'kahuna-clean-table', 'kahuna-striped-table', 'kahuna-bordered-table' ),
-		'labels' => array( __("No border","kahuna"), __("Clean","kahuna"), __("Striped","kahuna"), __("Bordered","kahuna") ),
+		'values' => array( 'kahuna-no-table', 'kahuna-clean-table', 'kahuna-striped-table', 'kahuna-bordered-table', 'kahuna-limited-table' ),
+		'labels' => array( __("No border","kahuna"), __("Clean","kahuna"), __("Striped","kahuna"), __("Bordered","kahuna"), __("Limited","kahuna") ),
 		'desc' => '',
 	'section' => 'kahuna_contentstructure' ),
 	array(
@@ -1531,6 +1559,11 @@ $kahuna_big = array(
 	'id' => 'kahuna_meta_comment',
 		'type' => 'checkbox',
 		'label' => __("Display Comments","kahuna"),
+	'section' => 'kahuna_metas_blog' ),
+	array(
+	'id' => 'kahuna_meta_blog_hint',
+		'type' => 'hint',
+		'label' => '',
 		'desc' => __("Choose meta information to show on posts.","kahuna"),
 	'section' => 'kahuna_metas' ),
 
@@ -1841,9 +1874,9 @@ $kahuna_big = array(
 'fonts' => array(
 
 	'Inherit' => array( // capitalization matters
-		'Inherit General Font',
+		'Inherit General Font', // 'inherit' is searched for by cryout_font_select() in framework prototypes.php
 	),
-	'Preferred Theme Fonts'=> array(
+	'Preferred Google Fonts'=> array(
 					"Source Sans Pro/gfont",
 					"Poppins/gfont",
 					"Raleway/gfont",
@@ -1857,7 +1890,7 @@ $kahuna_big = array(
 					"Oswald/gfont",
 					"Yanone Kaffeesatz/gfont",
 					),
-	'Sans-Serif' => array(
+	'System - Sans-Serif' => array(
 					"Segoe UI, Arial, sans-serif",
 					"Verdana, Geneva, sans-serif" ,
 					"Geneva, sans-serif",
@@ -1875,7 +1908,7 @@ $kahuna_big = array(
 					"Arial Black, Gadget, sans-serif",
 					"Lucida Sans Unicode, Lucida Grande, sans-serif"
 					),
-	'Serif' => array(
+	'System - Serif' => array(
 					"Georgia, Times New Roman, Times, serif",
 					"Times New Roman, Times, serif",
 					"Cambria, Georgia, Times, Times New Roman, serif",
@@ -1887,13 +1920,13 @@ $kahuna_big = array(
 					"Copperplate Light, Copperplate Gothic Light, serif",
 					"Garamond, Times New Roman, Times, serif"
 					),
-	'MonoSpace' => array(
+	'System - MonoSpace' => array(
 					"Courier New, Courier, monospace" ,
 					"Lucida Console, Monaco, monospace",
 					"Consolas, Lucida Console, Monaco, monospace",
 					"Monaco, monospace"
 					),
-	'Cursive' => array(
+	'System - Cursive' => array(
 					"Lucida Casual, Comic Sans MS, cursive",
 				    "Brush Script MT, Phyllis, Lucida Handwriting, cursive",
 					"Phyllis, Lucida Handwriting, cursive",
@@ -1901,7 +1934,7 @@ $kahuna_big = array(
 					"Comic Sans MS, cursive"
 					),
 	'Advanced' => array(
-					"* Local Font *",
+					"* Local Font *", // this is preg_matched in styles.php, keep in sync !
 					),
 	), // fonts
 
@@ -2347,7 +2380,7 @@ $kahuna_big = array(
 		'android' => 'e806',
 		'eventful' => 'e807',
 		'smashingmagazine' => 'e808',
-		'googleplus' => 'e809',
+		/* 'googleplus' => 'e809', */
 		'wikipedia' => 'e80a',
 		'lanyrd' => 'e80b',
 		'calendar' => 'e80c',
@@ -2359,7 +2392,7 @@ $kahuna_big = array(
 		'foursquare' => 'e812',
 		'chrome' => 'e813',
 		'internetexplorer' => 'e814',
-		'phone' => 'e815',
+		'phone2' => 'e815',
 		'grooveshark' => 'e816',
 		'99designs' => 'e817',
 		'code' => 'e818',
@@ -2385,7 +2418,7 @@ $kahuna_big = array(
 		'disqus' => 'e82d',
 		'feed' => 'e82e',
 		'skype' => 'e82f',
-		'twitter' => 'e830',
+		'twitter-old' => 'e830',
 		'youtube' => 'e831',
 		'vimeo' => 'e832',
 		'windows' => 'e833',
@@ -2431,7 +2464,7 @@ $kahuna_big = array(
 		'buffer' => 'e860',
 		'pocket' => 'e861',
 		'bitbucket' => 'e862',
-		'phone2' => 'e863',
+		'phone' => 'e863',
 		'stackoverflow' => 'e865',
 		'hackernews' => 'e866',
 		'lkdto' => 'e867',
@@ -2441,6 +2474,51 @@ $kahuna_big = array(
 		'support' => 'e86b',
 		'twitch' => 'e86c',
 		'beer' => 'e86d',
+		/* deprecated */
+		'facebook-old' => 'e905',
+		'github-old' => 'e909',
+		'googleplay-old' => 'e90a',
+		'paypal-old' => 'e90c',
+		'linkedin-old' => 'e911',
+		'reddit-old' => 'e912',
+		'youtube-old' => 'e918',
+		'wordpress-old' => 'e91b',
+		'stripe-old' => 'e928',
+		'steam-old' => 'e92a',
+		'spotify-old' => 'e92b',
+		'skype-old' => 'e92e',
+		/* 2024 */
+		'rumble' => 'e900',
+		'alipay' => 'e901',
+		'behance' => 'e902',
+		'apple' => 'e903',
+		'git' => 'e904',
+		'bootstrap-fill' => 'e906',
+		'bootstrap' => 'e907',
+		'gitlab' => 'e908',
+		'google' => 'e90b',
+		'microsoft-teams' => 'e90d',
+		'microsoft' => 'e90e',
+		'messenger' => 'e90f',
+		'mastodon' => 'e910',
+		'qr-code' => 'e914',
+		'person-square' => 'e915',
+		'person-circle' => 'e916',
+		'person' => 'e917',
+		'xbox' => 'e91a',
+		'whatsapp' => 'e91d',
+		'unity' => 'e91e',
+		'twitter' => 'e920',
+		'trello' => 'e922',
+		'tiktok' => 'e923',
+		'threads-fill' => 'e924',
+		'threads' => 'e925',
+		'telegram' => 'e926',
+		'substack' => 'e927',
+		'sourceforge' => 'e92c',
+		'snapchat' => 'e92d',
+		'signal' => 'e92f'
+		
 	),
 
 /*** ajax load more identifiers ***/
@@ -2522,5 +2600,9 @@ $kahuna_big = array(
 // sort block icons alphabetically
 ksort( $kahuna_big['block-icons'] );
 $kahuna_big['block-icons'] = array_merge( array( 'no-icon' => '&nbsp;') , $kahuna_big['block-icons'] );
+
+} // kahuna_big_init()
+
+add_action( 'after_setup_theme', 'kahuna_big_init' ); // init is too late for widgets_init
 
 // FIN

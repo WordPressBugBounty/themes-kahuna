@@ -6,6 +6,7 @@
  */
 
 get_header(); ?>
+
 <div id="container" class="<?php kahuna_get_layout_class(); ?>">
 	<main id="main" class="main">
 		<?php cryout_before_content_hook(); ?>
@@ -68,5 +69,6 @@ get_header(); ?>
 
 	<?php kahuna_get_sidebar(); ?>
 </div><!-- #container -->
+<?php if ( 2 == cryout_get_option( 'kahuna_singlenav' ) ) kahuna_fixed_nav_links(); ?>
 
 <?php get_footer();

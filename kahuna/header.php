@@ -47,7 +47,7 @@
 
 				<?php if ( has_nav_menu( 'primary' ) || ( true == cryout_get_option('kahuna_pagesmenu') ) ) { ?>
 				<button id="nav-toggle" aria-label="<?php esc_attr_e( 'Primary Menu', 'kahuna' ) ?>"><i class="icon-menu"></i></button>
-				<nav id="access" role="navigation"  aria-label="<?php esc_attr_e( 'Primary Menu', 'kahuna' ) ?>" <?php cryout_schema_microdata( 'menu' ); ?>>
+				<nav id="<?php echo apply_filters('kahuna_navigation_compat', 'access') ?>" role="navigation"  aria-label="<?php esc_attr_e( 'Primary Menu', 'kahuna' ) ?>" <?php cryout_schema_microdata( 'menu' ); ?>>
 					<?php cryout_access_hook();?>
 				</nav><!-- #access -->
 				<?php } ?>

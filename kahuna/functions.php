@@ -10,7 +10,7 @@
 
 // theme identification and options management - do NOT edit unless you know what you are doing
 define ( "_CRYOUT_THEME_NAME", "kahuna" );
-define ( "_CRYOUT_THEME_VERSION", "1.7.0.1" );
+define ( "_CRYOUT_THEME_VERSION", "1.8.0" );
 
 // prefixes for theme options and functions
 define ( '_CRYOUT_THEME_SLUG', 'kahuna' );

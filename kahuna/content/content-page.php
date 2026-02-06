@@ -16,15 +16,15 @@
 		</div>
 		<div class="article-inner">
 			<header>
+				<span class="entry-meta">
+					<?php do_action( 'cryout_singular_utility_hook' ); ?>
+				</span>
 				<?php
 					if ( FALSE == kahuna_header_title_check() ) {
 						$kahuna_heading_tag = ( is_front_page() ) ? 'h2' : 'h1';
 						the_title( '<' . $kahuna_heading_tag . ' class="entry-title singular-title" ' . cryout_schema_microdata( 'entry-title', 0 ) . '>', '</' . $kahuna_heading_tag . '>' );
 					}
 				?>
-				<span class="entry-meta" >
-					<?php kahuna_posted_edit(); ?>
-				</span>
 			</header>
 
 			<?php cryout_singular_before_inner_hook();  ?>

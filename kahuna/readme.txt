@@ -2,14 +2,14 @@
 
 Contributors: Cryout Creations
 Requires at least: 4.5
-Tested up to: 6.6
-Stable tag: 1.7.0.1
-Requires PHP: 5.6
+Tested up to: 6.9
+Stable tag: 1.8.0
+Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: https://www.cryoutcreations.eu/donate/
 
-Copyright 2017-2024 Cryout Creations
+Copyright 2017-2025 Cryout Creations
 https://www.cryoutcreations.eu/
 
 == Description ==
@@ -36,35 +36,37 @@ along with this program. If not, see http://www.gnu.org/copyleft/gpl.html
 
 Kahuna WordPress Theme bundles the following third-party resources:
 
-HTML5Shiv, Copyright Alexander Farkas (aFarkas)
-Dual licensed under the terms of the GPL v2 and MIT licenses
-Source: https://github.com/aFarkas/html5shiv/
-
-FitVids, Copyright Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com
-Licensed under the terms of the WTFPLlicense
+FitVids
+Copyright Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com
+License: WTFPLlicense
 Source: http://fitvidsjs.com/
 
 == Bundled Fonts ==
 
-Source Sans Pro, Copyright Adobe Systems Incorporated
+Source Sans Pro
+Copyright Adobe Systems Incorporated
 Licensed under the terms of SIL Open Font License, Version 1.1.
 Source: https://github.com/adobe-fonts/source-sans-pro/
 
-Poppins, Copyright Indian Type Foundry
+Poppins
+Copyright Indian Type Foundry
 Licensed under the terms of SIL Open Font License, Version 1.1.
 Source: https://github.com/google/fonts/tree/master/ofl/poppins
 
-Icomoon icons, Copyright Keyamoon.com
-Licensed under the terms of the GPL license
+Icomoon icons
+Copyright Keyamoon.com
+License: GPL license, https://www.gnu.org/licenses/gpl-3.0.en.html
 Source: https://icomoon.io/#icons-icomoon
 
-Zocial CSS social buttons, Copyright Sam Collins
-Licensed under the terms of the MIT license
-Source: https://github.com/smcllns/css-social-buttons
-
-Entypo+ icons, Copyright Daniel Bruce
-Licensed under the terms of the CC BY-SA 4.0 license
+Entypo+ icons
+Copyright Daniel Bruce
+License: CC BY-SA 4.0 license, https://creativecommons.org/licenses/by-sa/4.0/
 Source: http://www.entypo.com/faq.php
+
+Zocial CSS social buttons
+Copyright Sam Collins
+License: MIT license, https://opensource.org/licenses/MIT
+Source: https://github.com/smcllns/css-social-buttons
 
 == Bundled Images ==
 
@@ -74,10 +76,54 @@ https://www.pexels.com/photo/light-desk-pencil-picture-73526/
 https://www.pexels.com/photo/people-notes-meeting-team-7095/
 https://pixabay.com/en/aerial-view-green-grass-trees-2563791/
 
-The rest of the bundled images are created by Cryout Creations and released with the theme under GPLv3
+The rest of the bundled images are created by Cryout Creations and released with the theme under GPLv3.
 
 
 == Changelog ==
+
+= 1.8.0 =
+*Release Date - 2026.01.20*
+
+* Major rewrite of all critical action and filter hooks to resolve the '_load_textdomain_just_in_time() was called incorrectly' notice introduced by WordPress 6.7.
+	***If you're using a child theme to apply complex overrides, these may need adjusting to account for the new order of things***
+* Added hint about header video limitations to WordPress' Header Media customizer panel
+* Added hint (and link) about the landing page functionality in WordPress' Homepage Settings customizer panel
+* Added banner/slider background color option
+* Added 'cryout_preslider_hook' hook to landing page slider section
+* Added additional 'limited' selection for table appearance option for improved compatibility with content plugins
+* Added 'kahuna_navigation_compat' filter to allow overriding the "access" id on menu container and improve uber/mega menu compatibility
+* Added generated 'kahuna-accent-1/2' and 'kahuna-accent-1/2-bg' classnames and 'kahuna-accent-1/2' CSS variables for the main accent colors
+* Added new social icons: AliPay, Apple, Behance, Bluesky, Bootstrap, Git, Gitlab, Google, Mastodon, Messenger, Microsoft, Teams, Person (simple, circle, square), QR Code, Rumble, Signal, Snapchat, Sourceforge, Substack, Telegram, Threads, Trello, Unity, Whatsapp, Xbox, and one that shall not be named
+* Updated social icons: Twitter (X), Facebook, Github, Google Play, PayPal, Skype, Stripe, Steam, Spotify, Linkedin, Reddit, YouTube, WordPress (old icons are still available by adding the '-old' suffix to the classnames).
+* Improved theme defaults to make all default configurable texts translatable
+* Improved styling to support more than two banner/slider caption buttons
+* Improved compatibility with ShiftNav plugin by removing focus interception from buttons
+* Changed "Fixed Menu" option to "Sticky Menu" for clarity
+* Changed all outgoing frontend links to be protocol agnostic and avoid warnings from automated quality check tools.
+* Changed failover featured boxes 'camera' icon to only be visible when no featured image is used, to avoid interference with transparent images
+* Changed default social icon for tel: links
+* Renamed 'striped' tables option and CSS classname
+* Moved the landing page "Featured Content" option into the main Landing Page customizer panel
+* Rearranged WordPress' built-in site identity options for better consistency
+* Fixed 'View all posts by' translation inconsistency in user-bio.php
+* Fixed 'local' fonts selection not working in typography options
+* Fixed dropdown toggle accessibility in main menu and mobile menu
+* Fixed theme reset styling overriding block file buttons
+* Fixed PHP 8.2+ deprecation warning in presentation page boxes filter
+* Removed backwards support for pre-WordPress 4.5 logo functionality
+* Bumped required PHP version to 7.0
+* Updated to Cryout Framework 0.8.7.1:
+	* Added support to change built-in customizer panel priorities
+	* Added support to customize priority for theme customizer panels
+	* Added the Button customizer control (used for the personalities apply button)
+	* Added the Personality customizer control (for personalities selection)
+	* Updated rich text schema support for comments
+	* Merged 'hint' control as subtype of 'notice' control
+	* Fixed "About theme" customizer panel layout issues due to WordPress 6.7 accessibility changes
+	* Fixed theme indicator misplaced with WordPress 6.7 accessibility changes
+	* Fixed deprecated ${var} usage with PHP 8.2+
+	* Fixed whitespaces in font control title hint due to spaces in markup
+	* Precognitively fixed erroneous white square in customize screen panels with Zynith SEO plugin
 
 = 1.7.0.1 =
 *Release date - 18.09.2024*

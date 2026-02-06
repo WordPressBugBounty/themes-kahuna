@@ -613,7 +613,7 @@
 .socials a.android::before { content: '\e806'; }
 .socials a[href*="eventful.com"]::before, .socials a.eventful::before { content: '\e807'; }
 .socials a[href*="smashingmagazine.com"]::before, .socials a.smashingmagazine::before { content: '\e808'; }
-.socials a[href*="plus.google.com"]::before, .socials a.googleplus::before { content: '\e809'; }
+/* .socials a[href*="plus.google.com"]::before, .socials a.googleplus::before { content: '\e809'; } */
 .socials a[href*="wikipedia.org"]::before, .socials a.wikipedia::before { content: '\e80a'; }
 .socials a[href*="lanyrd.com"]::before, .socials a.lanyrd::before { content: '\e80b'; }
 .socials a.calendar::before { content: '\e80c'; }
@@ -625,7 +625,7 @@
 .socials a[href*="foursquare.com"]::before, .socials a.foursquare::before { content: '\e812'; }
 .socials a.chrome::before { content: '\e813'; }
 .socials a.ie::before, .socials a.internetexplorer { content: '\e814'; }
-.socials a[href^="tel:"]::before, .socials a.phone::before { content: '\e815'; }
+.socials a.phone2::before { content: '\e815'; }
 .socials a[href*="grooveshark.im"]::before, .socials a.grooveshark::before { content: '\e816'; }
 .socials a[href*="99designs.com"]::before, .socials a.\39 9designs::before { content: '\e817'; }
 .socials a.code::before { content: '\e818'; }
@@ -651,7 +651,7 @@
 .socials a[href*="disqus.com"]::before, .socials a.disqus::before { content: '\e82d'; }
 .socials a[href*="/feed"]::before, .socials a[href*="/rss"]::before, .socials a.rss::before, .socials a.feed::before { content: '\e82e'; }
 .socials a[href^="callto:"]::before, .socials a.skype::before { content: '\e82f'; }
-.socials a[href*="twitter.com"]::before, .socials a.twitter::before { content: '\e830'; }
+.socials a.twitter-old::before { content: '\e830'; }
 .socials a[href*="youtube.com"]::before, .socials a.youtube::before { content: '\e831'; }
 .socials a[href*="vimeo.com"]::before, .socials a.vimeo::before { content: '\e832'; }
 .socials a.windows::before { content: '\e833'; }
@@ -700,7 +700,7 @@
 .socials a[href*="buffer.com"]::before, .socials a.buffer::before { content: '\e860'; }
 .socials a[href*="getpocket.com"]::before, .socials a.pocket::before { content: '\e861'; }
 .socials a[href*="bitbucket.org"]::before, .socials a.bitbucket::before { content: '\e862'; }
-.socials a.phone2::before { content: '\e863'; }
+.socials a[href^="tel:"]::before, .socials a.phone::before { content: '\e863'; }
 .socials a[href*="stackoverflow.com"]::before, .socials a.stackoverflow::before { content: '\e865'; }
 .socials a[href*="news.ycombinator.com"]::before, .socials a.hackernews::before { content: '\e866'; }
 .socials a.lkdto::before { content: '\e867'; }
@@ -710,6 +710,53 @@
 .socials a.support::before { content: '\e86b'; }
 .socials a[href*="twitch.tv"]::before, .socials a.twitch::before { content: '\e86c'; }
 .socials a.beer::before { content: '\e86d'; }
+/* deprecated */
+.socials a.facebook-old::before { content: '\e905'; }
+.socials a.github-old::before { content: '\e909'; }
+.socials a.googleplay-old::before { content: '\e90a'; }
+.socials a.paypal-old::before { content: '\e90c'; }
+.socials a.linkedin-old::before { content: '\e911'; }
+.socials a.reddit-old::before { content: '\e912'; }
+.socials a.youtube-old::before { content: '\e918'; }
+.socials a.wordpress-old::before { content: '\e91b'; }
+.socials a.stripe-old::before { content: '\e928'; }
+.socials a.steam-old::before { content: '\e92a'; }
+.socials a.spotify-old::before { content: '\e92b'; }
+.socials a.skype-old::before { content: '\e92e'; }
+/* 2024 */
+.socials a[href*="rumble.com"]::before, .socials a.rumble::before { content: "\e900"; }
+.socials a[href*="alipay.com"]::before, .socials a.alipay::before { content: "\e901"; }
+.socials a[href*="behance.net"]::before, .socials a.behance::before { content: "\e902"; }
+.socials a.apple::before { content: "\e903"; }
+.socials a[href*="git-scm.com"]::before, .socials a.git::before { content: "\e904"; }
+.socials a.bootstrap-fill::before { content: "\e906"; }
+.socials a.bootstrap::before { content: "\e907"; }
+.socials a[href*="gitlab.com"]::before, .socials a.gitlab::before { content: "\e908"; }
+.socials a.google::before { content: "\e90b"; }
+.socials a.microsoft-teams::before { content: "\e90d"; }
+.socials a.microsoft::before { content: "\e90e"; }
+.socials a[href^="https://m.me"]::before, .socials a[href^="http://m.me"]::before, .socials a.messenger::before { content: "\e90f"; }
+.socials a[href*="mastodon.social"]::before, .socials a[href*="mstdn.social"]::before,
+.socials a[href*="mas.to"]::before, .socials a[href*="mastodon.cloud"]::before, .socials a.mastodon::before { content: "\e910"; }
+.socials a.qr-code::before { content: "\e914"; }
+.socials a.person-square::before { content: "\e915"; }
+.socials a.person-circle::before { content: "\e916"; }
+.socials a.person::before { content: "\e917"; }
+.socials a[href*="xbox.com"]::before, .socials a.xbox::before { content: "\e91a"; }
+.socials a[href^="https://wa.me"]::before, .socials a[href^="http://wa.me"]::before, .socials a.whatsapp::before { content: "\e91d"; }
+.socials a[href*="unity.com"]::before, .socials a.unity::before { content: "\e91e"; }
+.socials a[href*="twitter.com"]::before, .socials a.twitter::before { content: "\e920"; }
+.socials a[href*="trello.com"]::before, .socials a.trello::before { content: "\e922"; }
+.socials a.tiktok::before { content: "\e923"; }
+.socials a.threads-fill::before { content: "\e924"; }
+.socials a[href*="threads.net"]::before, .socials a.threads::before { content: "\e925"; }
+.socials a[href*="telegram.org"]::before, .socials a[href^="https://t.me"]::before, .socials a[href^="http://t.me"]::before, .socials a.telegram::before { content: "\e926"; }
+.socials a[href*="substack.com"]::before, .socials a.substack::before { content: "\e927"; }
+.socials a[href*="sourceforge.net"]::before, .socials a.sourceforge::before { content: "\e92c"; }
+.socials a[href*="snapchat.com"]::before, .socials a.snapchat::before { content: "\e92d"; }
+.socials a[href*="signal.org"]::before, .socials a.signal::before { content: "\e92f"; }
+/* 2025 */
+.socials a[href*="bsky.app"]::before, .socials a.bluesky::before { content: "\e930"; }
 
 .socicon-duckduckgo::before { content: '\e801'; }
 .socicon-aim::before { content: '\e802'; }
@@ -719,7 +766,7 @@
 .socicon-android::before { content: '\e806'; }
 .socicon-eventful::before { content: '\e807'; }
 .socicon-smashingmagazine::before { content: '\e808'; }
-.socicon-googleplus::before { content: '\e809'; }
+/* .socicon-googleplus::before { content: '\e809'; } */
 .socicon-wikipedia::before { content: '\e80a'; }
 .socicon-lanyrd::before { content: '\e80b'; }
 .socicon-calendar::before { content: '\e80c'; }
@@ -731,7 +778,7 @@
 .socicon-foursquare::before { content: '\e812'; }
 .socicon-chrome::before { content: '\e813'; }
 .socicon-internetexplorer::before { content: '\e814'; }
-.socicon-phone::before { content: '\e815'; }
+.socicon-phone2::before { content: '\e815'; }
 .socicon-grooveshark::before { content: '\e816'; }
 .socicon-99designs::before { content: '\e817'; }
 .socicon-code::before { content: '\e818'; }
@@ -757,7 +804,7 @@
 .socicon-disqus::before { content: '\e82d'; }
 .socicon-feed::before { content: '\e82e'; }
 .socicon-skype::before { content: '\e82f'; }
-.socicon-twitter::before { content: '\e830'; }
+.socicon-twitter-old::before { content: '\e830'; }
 .socicon-youtube::before { content: '\e831'; }
 .socicon-vimeo::before { content: '\e832'; }
 .socicon-windows::before { content: '\e833'; }
@@ -803,7 +850,7 @@
 .socicon-buffer::before { content: '\e860'; }
 .socicon-pocket::before { content: '\e861'; }
 .socicon-bitbucket::before { content: '\e862'; }
-.socicon-phone2::before { content: '\e863'; }
+.socicon-phone::before { content: '\e863'; }
 .socicon-stackoverflow::before { content: '\e865'; }
 .socicon-hackernews::before { content: '\e866'; }
 .socicon-lkdto::before { content: '\e867'; }
@@ -813,6 +860,52 @@
 .socicon-support::before { content: '\e86b'; }
 .socicon-twitch::before { content: '\e86c'; }
 .socicon-beer::before { content: '\e86d'; }
+/* deprecated */
+.socicon-facebook-old:before { content: "\e905"; }
+.socicon-github-old:before { content: "\e909"; }
+.socicon-googleplay-old:before { content: "\e90a"; }
+.socicon-paypal-old:before { content: "\e90c"; }
+.socicon-linkedin-old:before { content: "\e911"; }
+.socicon-reddit-old:before { content: "\e912"; }
+.socicon-youtube-old:before { content: "\e918"; }
+.socicon-wordpress-old:before { content: "\e91b"; }
+.socicon-stripe-old:before { content: "\e928"; }
+.socicon-steam-old:before { content: "\e92a"; }
+.socicon-spotify-old:before { content: "\e92b"; }
+.socicon-skype-old:before { content: "\e92e"; }
+/* 2024 */
+.socicon-rumble::before { content: "\e900"; }
+.socicon-alipay::before { content: "\e901"; }
+.socicon-behance::before { content: "\e902"; }
+.socicon-apple::before { content: "\e903"; }
+.socicon-git::before { content: "\e904"; }
+.socicon-bootstrap-fill::before { content: "\e906"; }
+.socicon-bootstrap::before { content: "\e907"; }
+.socicon-gitlab::before { content: "\e908"; }
+.socicon-google::before { content: "\e90b"; }
+.socicon-microsoft-teams::before { content: "\e90d"; }
+.socicon-microsoft::before { content: "\e90e"; }
+.socicon-messenger::before { content: "\e90f"; }
+.socicon-mastodon::before { content: "\e910"; }
+.socicon-qr-code::before { content: "\e914"; }
+.socicon-person-square::before { content: "\e915"; }
+.socicon-person-circle::before { content: "\e916"; }
+.socicon-person::before { content: "\e917"; }
+.socicon-xbox::before { content: "\e91a"; }
+.socicon-whatsapp::before { content: "\e91d"; }
+.socicon-unity::before { content: "\e91e"; }
+.socicon-twitter::before { content: "\e920"; }
+.socicon-trello::before { content: "\e922"; }
+.socicon-tiktok::before { content: "\e923"; }
+.socicon-threads-fill::before { content: "\e924"; }
+.socicon-threads::before { content: "\e925"; }
+.socicon-telegram::before { content: "\e926"; }
+.socicon-substack::before { content: "\e927"; }
+.socicon-sourceforge::before { content: "\e92c"; }
+.socicon-snapchat::before { content: "\e92d"; }
+.socicon-signal::before { content: "\e92f"; }
+/* 2025 */
+.socicon-bluesky::before { content: "\e930"; }
 
 /* Blocks font */
 @font-face {

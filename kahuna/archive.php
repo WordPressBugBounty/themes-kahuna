@@ -23,8 +23,7 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) : ?>
 
-				<header class="page-header pad-container" <?php cryout_schema_microdata( 'element' ); ?>>
-					<?php
+				<header class="page-header pad-container" <?php cryout_schema_microdata( 'element' ); ?>><?php
 						// Load custom header if author
 						if (is_author()) {
 							get_template_part( 'content/user-bio' );
@@ -35,8 +34,7 @@ get_header(); ?>
 							}
 							the_archive_description( '<div class="taxonomy-description">', '</div>' );
 						}
-					?>
-				</header><!-- .page-header -->
+				?></header><!-- .page-header -->
 
 				<div id="content-masonry" class="content-masonry" <?php cryout_schema_microdata( 'blog' ); ?>>
 					<?php

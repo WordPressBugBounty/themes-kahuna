@@ -48,6 +48,11 @@ function cryout_headerimage_hook() {
     do_action( 'cryout_headerimage_hook' );
 }
 
+// Inside landing page slider container
+function cryout_preslider_hook() {
+    do_action( 'cryout_preslider_hook' );
+}
+
 // Inside header for widgets
 function cryout_header_widget_hook() {
     do_action( 'cryout_header_widget_hook' );

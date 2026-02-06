@@ -27,17 +27,18 @@ function kahuna_get_option_defaults() {
 
 	// Landing page
 	"kahuna_landingpage"		=> 1, // 1=enabled, 0=disabled
-	"kahuna_lpposts"			=> 2, // 2=static page, 1=posts, 0=disabled
-	"kahuna_lpposts_more"		=> 'More Posts',
+
 	"kahuna_lpslider"			=> 1, // 2=shortcode, 1=static, 0=disabled
 	"kahuna_lpsliderimage"		=> get_template_directory_uri() . '/resources/images/slider/static.jpg', // static image
 	"kahuna_lpslidershortcode"	=> '',
 	"kahuna_lpslidertitle"		=> get_bloginfo('name'),
 	"kahuna_lpslidertext"		=> get_bloginfo('description'),
-	"kahuna_lpslidercta1text"	=> 'Demo',
+	"kahuna_lpslidercta1text"	=> _x('Demo','Slider CTA Text 1 default value','kahuna'),
 	"kahuna_lpslidercta1link"	=> '#lp-blocks',
-	"kahuna_lpslidercta2text"	=> 'More',
+	"kahuna_lpslidercta2text"	=> _x('More','Slider CTA Text 2 default value','kahuna'),
 	"kahuna_lpslidercta2link"	=> '#lp-boxes-1',
+	"kahuna_lpposts"			=> 2, // 2=static page, 1=posts, 0=disabled
+	"kahuna_lpposts_more"		=> _x('More Posts','Landing page load more posts default label','kahuna'),
 
 	"kahuna_lpblockmaintitle1"	=> '',
 	"kahuna_lpblockmaindesc1"	=> '',
@@ -62,7 +63,7 @@ function kahuna_get_option_defaults() {
 	"kahuna_lpboxlayout1"		=> 2, // 1=full width, 2=boxed
 	"kahuna_lpboxmargins1"		=> 2, // 1=no margins, 2=margins
 	"kahuna_lpboxanimation1"	=> 2, // 1=animated, 2=static
-	"kahuna_lpboxreadmore1"		=> 'Read More',
+	"kahuna_lpboxreadmore1"		=> _x('Read More','Landing page text boxes 1 default read more label','kahuna'),
 	"kahuna_lpboxlength1"		=> 25,
 
 	"kahuna_lpboxmaintitle2"	=> '',
@@ -74,7 +75,7 @@ function kahuna_get_option_defaults() {
 	"kahuna_lpboxlayout2"		=> 1, 	// 1=full width, 2=boxed
 	"kahuna_lpboxmargins2"		=> 1, 	// 1=no margins, 2=margins
 	"kahuna_lpboxanimation2"	=> 1, 	// 1=animated, 2=static
-	"kahuna_lpboxreadmore2"		=> 'Read More',
+	"kahuna_lpboxreadmore2"		=> _x('Read More','Landing page text boxes 2 default read more label','kahuna'),
 	"kahuna_lpboxlength2"		=> 12,
 
 	"kahuna_lptextone"			=> $sample_pages[1],
@@ -152,7 +153,9 @@ function kahuna_get_option_defaults() {
 	"kahuna_submenutext" 		=> "#888888",
 	"kahuna_submenubackground" 	=> "#FFFFFF",
 	"kahuna_footerbackground"	=> "#1E2C35",
-	"kahuna_footertext"			=> "#BBBBBB",
+	"kahuna_footertext"			=> "#BBBBBB",	
+	"kahuna_lpbannerbg"			=> "#EEEFF0",
+
 	"kahuna_lpblocksbg"			=> "#EEEFF0",
 	"kahuna_lpboxesbg"			=> "#ECEFF2",
 	"kahuna_lptextsbg"			=> "#F7F8F9",
@@ -202,7 +205,7 @@ function kahuna_get_option_defaults() {
 	"kahuna_excerptarchive"		=> 'excerpt',
 	"kahuna_excerptlength"		=> 50,
 	"kahuna_excerptdots"		=> " &hellip;",
-	"kahuna_excerptcont"		=> "Read more",
+	"kahuna_excerptcont"		=> _x("Read more","Blog post excerpts default read more label","kahuna"),
 
 	// Post information
 	"kahuna_fpost" 				=> 1,
